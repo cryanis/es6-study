@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+	<title>let 和 const</title>
+</head>
+<body>
+
+	<script type="text/javascript">
+		/*** let 用来定义变量
+			 const 用来定义常量
+		 *** 与 var 的区别 ***
+			1. 不能重复定义
+			2. 只能在块级作用域中生效
+			3. 不存在变量提升
+		***/
+
+		//用法
+		let a = 1;
+		a = 2; // 变量可以被改变
+		console.log(a)
+
+		//const 常量不能被改变
+		const b = 2;
+		b = 2; // 报错
+		console.log(b) 
+
+		//1. 不能重复定义
+		let c = 1;
+		let c = 2; // 报错
+		console.log(c)
+
+		const d = 1;
+		const d = 2; // 报错
+
+		//2.只能在块级作用域中生效
+
+		if(true){
+			var i = 1;
+			let ii = 2;
+			const iii = 3;
+		}
+		console.log(i) // 可以打印出来 1
+		// console.log(ii)// error: ii is not defined
+		// console.log(iii)// error: iii is not defined
+
+
+		//3. 不存在变量提升
+		console.log(foo) // undefined
+		var foo = 1; 
+		
+		//以上对foo进行了提升，类似：
+		var foo;
+		console.log(foo)
+		foo = 1;
+
+
+		console.log(abc) //error: abc is not defined
+		let abc = 1;
+	</script>
+</body>
+</html>

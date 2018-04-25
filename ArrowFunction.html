@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>箭头函数</title>
+</head>
+<body>
+
+
+	<script type="text/javascript">
+		/*** 
+			ES6标准新增了一种新的函数：Arrow Function（箭头函数）。
+			参数 => 表达式/语句
+
+			1. 继承外层作用域
+			2. 不能用作构造函数
+			3. 没有prototype属性
+		***/
+
+		let a = 2;
+		let square = x => a*a;
+		let square3 = x => {
+			return a*a*a
+		};
+		console.log(square());
+		console.log(square3())
+
+
+		//1.没有独立作用域
+
+		var obj = {
+			commonFn : function(){
+				console.log(this)
+			},
+			arrowFn: () => {
+				console.log(this)
+			}
+		}
+		obj.commonFn(); // this指向obj
+		obj.arrowFn(); // this指向window
+
+
+		//2.不能用作构造函数
+		let Anm = () => {};
+		var anm = new Anm() //error: Anm is not a constructor
+
+		//3.没有prototype属性
+		console.log(Anm.prototype) //undefined
+	</script>
+</body>
+</html>

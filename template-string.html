@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>模板字符串</title>
+</head>
+<body>
+
+
+	<script type="text/javascript">
+		/*** 
+			1.反引号标识
+			2.支持换行
+			3.支持嵌套变量和表达式
+		***/
+
+		//基础用法
+		let str = `
+			<div>
+				<h1>123</h1>
+			</div>`;
+		document.querySelector('body').innerHTML = str;
+
+		// 嵌套变量
+		let name = 'xiaoyaqian';
+		let str2 = `
+			<div>
+				<h1>${name}</h1>
+			</div>`
+		document.querySelector('body').innerHTML = str2;
+
+		// 嵌套表达式
+		let nameFn = () => 'xiaoyaqian 123';
+		let str3 = `
+			<div>
+				<h1>${nameFn()}</h1>
+			</div>`
+		document.querySelector('body').innerHTML = str3;
+
+		//循环嵌套
+		let nameList = ['xiaoyaqian1', 'xiaoyaqian2','xiaoyaqian3'];
+		let str4 = `
+			<ul>
+			${
+				nameList.map(name => `<li>${name}</li>`).join('')
+			}
+			</ul>
+		`;
+		document.querySelector('body').innerHTML = str4;
+	</script>
+</body>
+</html>

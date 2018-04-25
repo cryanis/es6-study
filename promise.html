@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Promise</title>
+</head>
+<body>
+<p>Promise 是为了解决异步函数层层嵌套的问题，支持异步的链式操作</p>
+<script type="text/javascript">
+	// 基础结构
+	new Promise((resolve, reject) =>{}).then();
+
+	//比如ajax调用
+	new Promise((resolve, reject) => {
+		$.ajax({
+			url:'',
+			type:'get',
+			success:function(res){
+				resolve(res)
+			},
+			error:function(err){
+				reject(err)
+			}
+		})
+	}).then((res)=>{
+		console.log('success',res)
+	},(err)=>{
+		console.log('error',err)
+	});
+
+
+
+	//链式调用
+
+	//传统ajax串行调用
+	$.ajax({
+		url:'',
+		type:'get',
+		success:function(res){
+			$.ajax({
+				url:'',
+				type:'get',
+				success:function(res){
+					console.log(res)
+				},
+				error:function(err){
+					console.log(err)
+				}
+			})
+		},
+		error:function(err){
+			console.log(err)
+		}
+	})
+
+	//promise 
+
+	var promise1 = new Promise((resolve,reject) => {
+		$.ajax({
+			url:'url1',
+			type:'get',
+			success:function(res){
+				resolve(res)
+			},
+			error:function(err){
+				reject(err)
+			}
+		})
+	});
+
+	var promise2 = new Promise((resolve,reject) => {
+		$.ajax({
+			url:'url2',
+			type:'get',
+			success:function(res){
+				resolve(res)
+			},
+			error:function(err){
+				reject(err)
+			}
+		})
+	});
+
+	promise1.then(()=>{
+		return promise2
+	}).then(()=>{
+		console.log('promise2 success')
+	})
+</script>
+</body>
+</html>
